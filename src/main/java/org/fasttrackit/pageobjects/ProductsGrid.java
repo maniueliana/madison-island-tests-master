@@ -16,6 +16,13 @@ public class ProductsGrid {
     @FindBy(css = ".product-name > a")
     private List<WebElement> productNameContainers;
 
+    public List<WebElement> getAddToCartProductNameContainers() {
+        return addToCartProductNameContainers;
+    }
+
+    @FindBy(xpath = "//div[@class='product-info' and .//button[contains(@class, 'btn-cart')]]//h2[@class='product-name']/a")
+    private List<WebElement>addToCartProductNameContainers;
+
     @FindBy(xpath = "//span[@class='price'and ./parent::*[not(contains(@class,'old-price'))]]" )
     private List<WebElement>actualProductPriceContainers;
 

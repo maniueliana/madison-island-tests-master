@@ -1,13 +1,20 @@
 package org.fasttrackit;
 
-import org.junit.After;
-import org.junit.Before;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestBase {
 
     protected WebDriver driver = DriverManager.getDriver();
+
+    private static final Map<String, Object> STEP_VARIABLES = new HashMap<>();
+
+    public static Map<String, Object> getStepVariables() {
+        return STEP_VARIABLES;
+    }
 
     public void waitForPageToLoad(long timeoutMillis) {
 
@@ -25,5 +32,7 @@ public class TestBase {
         while (timeoutMillis > 0 && !((JavascriptExecutor) driver)
             .executeScript("return document.readyState")
                 .equals("complete"));
+
+
     }
 }
