@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.fasttrackit</groupId>
-  <artifactId>madison-island-tests</artifactId>
+  <artifactId>madison-island-cucumber-tests</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>madison-island-tests</name>
+  <name>madison-island-cucumber-tests</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -30,6 +30,23 @@
       <artifactId>selenium-java</artifactId>
       <version>3.141.59</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>1.2.5</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-junit -->
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>1.2.5</version>
+      <scope>test</scope>
+    </dependency>
+
+
   </dependencies>
 
   <build>
@@ -76,5 +93,15 @@
         </plugin>
       </plugins>
     </pluginManagement>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>8</source>
+                  <target>8</target>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>
