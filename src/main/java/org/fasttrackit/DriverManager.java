@@ -1,7 +1,9 @@
 package org.fasttrackit;
 
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
@@ -19,6 +21,22 @@ public class DriverManager {
 //                if (System.getProperty("os.name").toLowerCase().contains("windows"))
                 System.setProperty("webdriver.chrome.driver",
                         AppConfig.getChromeDriverPath());
+
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("enable-automation");
+
+                        if (System.getProperty("headless", "false").equalsIgnoreCase("true")){
+                            System.out.println("Running headless chrome");
+                            options.addArguments("--headless");
+                        }
+
+                options.addArguments("--window-size=1920,1080");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-extensions");
+                options.addArguments("--dns-prefetch-disable");
+                options.addArguments("--disable-gpu");
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+
                 driver = new ChromeDriver();
                 break;
             case "firefox":
@@ -32,6 +50,8 @@ public class DriverManager {
                 driver = new InternetExplorerDriver();
                 break;
         }
+
+
         //move the hardcoded timeout value to properties files
         driver.manage().timeouts().implicitlyWait(AppConfig.getTimeout(), TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(AppConfig.getTimeout(), TimeUnit.SECONDS);
